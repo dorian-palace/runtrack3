@@ -1,6 +1,7 @@
 <?php
-session_start();
+
 include("elements/bdd.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -8,13 +9,14 @@ include("elements/bdd.php");
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="formulaire.css">
-    <title>Blog Inscription</title>
+    < meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Blog Inscription</title>
 </head>
 
 <body>
+    <?php include("elements/header.php"); ?>
     <main class="main2">
         <form class="formulaire2" action="#" method="post">
             <?php if (isset($msg)) {
@@ -49,8 +51,8 @@ include("elements/bdd.php");
     $login = htmlspecialchars(trim($login));
     $email = htmlspecialchars(trim($email));
     $password = htmlspecialchars(trim($password));
-    
-    
+
+
     if (isset($_POST['valider'])) {
 
 
@@ -64,8 +66,8 @@ include("elements/bdd.php");
 
                 if ($_POST['password'] == $_POST['confpassword']) {
 
-                    echo 'ok !';
-               
+                    $msg = 'Inscription validée';
+
 
                     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
@@ -74,7 +76,7 @@ include("elements/bdd.php");
                     } else {
                         $msg = 'Format mail invalide';
                     }
-                }else {
+                } else {
                     $msg = 'Password inccoret';
                 }
             } else {
@@ -85,7 +87,7 @@ include("elements/bdd.php");
         }
     }
 
-    var_dump($password);
+
     ?>
 </body>
 

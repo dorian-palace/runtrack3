@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,24 +11,46 @@ session_start();
 </head>
 
 <body>
+    <header class="nav">
+        <nav>
+            <ul>
+            <li><a href="#">Accueil</a></li>
+            <?php if (!isset($_SESSION['id'])) {
+                ?>
 
-<?php include('bdd.php'); ?>
+                <li><a href="connexion.php">Connexion</a></li>
+                <li><a href="inscription.php">Inscription</a></li>
+        
+               <?php } ?>
+                <li><a href="inscription.php">modifier profil </a></li>
+                <li class="menu-deroulant">
+                    <a href="#">Services</a>
+                    <ul class="sous-menu">
+                        <li><a href="#">Graphisme</a></li>
+                        <li><a href="#">Web & App</a></li>
+                        <li><a href="#">Marketing</a></li>
+                    </ul>
+                </li>
+                <li class="menu-deroulant">
+                    <a href="#">Réalisations</a>
+                    <ul class="sous-menu">
+                        <li><a href="#">SpaceX</a></li>
+                        <li><a href="#">Codeur.com</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
 
 
 
-        <?php if (!isset($_SESSION['id'])) {
-            echo '<a href="inscription.php">Inscription</a>' . ' ' .
-                '<a href="connexion.php">Connexion</a>';
-        } ?>
-
-        <?php
-        if (isset($_SESSION['id'])) {
-
-            echo '<a href="profil.php">Modifier le profil</a>' . ' ';
-        }
-        ?>
 
     
+    
+    
+
+
 
     </div>
     </header>
@@ -39,7 +59,3 @@ session_start();
 </body>
 
 </html>
-
-SELECT * FROM "table1" as ARR INNER JOIN "table2" as AOP ON ("AOP.col2" = "ARR.col1");
-
-SELECT * FROM "table1" as "ARR" INNER JOIN "table2" as "AOP" ON ("AOP"."col2" = "ARR"."col1");
