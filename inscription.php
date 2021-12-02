@@ -89,6 +89,7 @@ include("elements/bdd.php");
 
 
     ?>
+    <?php include('elements/footer.php');?>
 </body>
 
 </html>
