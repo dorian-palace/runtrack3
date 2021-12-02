@@ -79,7 +79,7 @@ try {
     <form action="deconnexion.php" id="deco">
             <input type="submit" ' value="Se deconnecter"/>
         </form>
-      <?php include('elements/footer.php');?>
+      
   </main>
 
   <div class="connecter">
@@ -89,6 +89,7 @@ try {
       <h1> Bienvenu : </h1> <?php  echo  $userinfo['login'];
         } ?> </H1>
   </div>
+  <?php include('elements/footer.php');?>
 </body>
 
 </html>

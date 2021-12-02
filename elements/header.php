@@ -32,9 +32,9 @@
                <?php } ?>
                
                 <li class="menu-deroulant">
-                    <a href="#">Services</a>
+                    <a href="#">Articles</a>
                     <ul class="sous-menu">
-                        <li><a href="#">Graphisme</a></li>
+                        <li><a href="creer-article">Créer un article</a></li>
                         <li><a href="#">Web & App</a></li>
                         <li><a href="#">Marketing</a></li>
                     </ul>
@@ -67,3 +67,4 @@
 </body>
 
 </html>
+
