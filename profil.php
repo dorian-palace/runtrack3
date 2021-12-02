@@ -1,7 +1,80 @@
 <?php
 session_start();
-include("elements/bdd.php");
+include('elements/bdd.php');
+
+try {
+
+    if(!isset($_SESSION['id'])){
+
+        header('Location: connexion.php');
+        exit();
+    }
+
+    if (isset($_SESSION['id'])) {
+
+
+
+        $insert = $bdd->prepare("SELECT * FROM utilisateurs where id = ? ");
+        $insert->execute(array($_SESSION['id']));
+        $insert->execute();
+        $userinfo = $insert->fetch();
+
+        if (isset($_POST['newlogin']) and !empty($_POST['newlogin'] and $_POST['newlogin'] != $userinfo['login'])) {
+
+            $newlogin = htmlspecialchars((trim($_POST['newlogin'])));
+
+            $inserlogin = $bdd->prepare("UPDATE utilisateurs SET login = ?  WHERE id = ?");
+            $inserlogin->execute(array($newlogin, $_SESSION['id']));
+
+            $msg = 'Nom d\'utilisateur modifié';
+
+            
+        }
+
+        if (isset($_POST['newemail']) and !empty($_POST['newemail']) and $_POST['newemail'] != $userinfo['email']) {
+
+            $newemail = htmlspecialchars(trim($_POST['newemail']));
+            
+            
+            $insertmail = $bdd->prepare('UPDATE utilisateurs SET email = ? WHERE id=?');
+            $insertmail->execute(array($newemail, $_SESSION['id']));
+            
+            $msg = 'email modifié';
+        } else{
+            $msh = 'email invalide';
+        }   
+
+        if (isset($_POST['newmdp ']) and !empty('newmdp') and isset($_POST['newmdp2']) and !empty($_POST['newmdp'])) {
+
+            $newmdp = $_POST['newmdp'];
+            $newmdp2 = $_POST['newmdp2'];
+            $newmdp = password_hash($newmdp, PASSWORD_BCRYPT);
+            $newmdp2 = password_hash($newmdp2, PASSWORD_BCRYPT);
+
+            if ($newmdp == $newmpd2) {
+
+                $insertmdp = $bdd->prepare('UPDATE utilisateur SET password=? WHERE id=?');
+                $insertmdp->execute(array($newmdp, $_SESSION['id']));
+
+                $msg = 'Mot de passe modifié';
+            }
+        }else{
+            $msh = 'Mot de passe incorrect';
+        }   
+    } 
+} catch (PDOException $e) {
+
+    echo 'echec :' . $e->getMessage();
+}
+
+
 ?>
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,70 +83,45 @@ include("elements/bdd.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
+    <title>Document</title>
 </head>
 
 <body>
-    <h1></h1>
-    <main>
-        <form class="formulaire2" action="#" method="post">
-            <?php if (isset($msg)) {
-                echo $msg;
-            } ?>
-            <h1>Modifier votre profil</h1>
+    <?php include('elements/header.php') ?>
+
+    <main class="main2">
+
+
+
+        <form classe="Formulaire2" action="#" method="post">
+
+            <?php if(isset($msg)){echo $msg;}?>
+
+            <h2>Modification de mon profil</h2>
 
             <div class="input">
-                <input type="text" name="newlogin" require placeholder=" New login" /><br />
-                <input type="email" name="newemail" require placeholder="New Email" /><br />
-                <input type="password" name="newpassword" require placeholder="New password" /><br />
-                <input type="password" name="newconfpassword" require placeholder="New password" /><br />
+
+                <input type="text" name="newlogin" placeholder="nom d'utilisateur" value="<?php echo $userinfo['login'] ?>">
+                <input type="email" name='newemail' placeholder="email" value="<?php echo $userinfo['email'] ?>">
+                <input classe="input-profil" type="password" name='newmdp' placeholder="mot de passe">
+                <input classe="input-profil" type="password" name='newmdp2' placeholder="Confirmer le   mot de passe">
+
+
             </div>
 
-            <div align="center">
-                <input type="submit" name="valider" value="Modifier !" />
+            <div class="modifier">
+                <input id='modifier' type="submit" value="Modifier">
+                
             </div>
         </form>
-        <?php
-        @$newpassword = $_POST['newpassword'];
-        @$newpassword = password_hash($password, PASSWORD_BCRYPT);
-        @$newconfpassword = $_POST['newconfpassword'];
 
-        if (isset($_SESSION['id'])) {
-            $req = $bdd->prepare("SELECT * FROM utilisateurs WHERE id = ?");
-            $req->execute(array($_SESSION['id']));
-            $user = $req->fetch();
+        <form action="deconnexion.php" id="deco">
+            <input type="submit" ' value="Se deconnecter"/>
+        </form>
 
-            if (isset($_POST['newlogin']) and !empty($_POST['newlogin']) and $_POST['newlogin'] != $user['login']) {
-                $newlogin = htmlspecialchars($_POST['newlogin']);
-                $insertlogin = $bdd->prepare("UPDATE utilisateurs SET login = ? WHERE id = ?");
-                $insertlogin->execute(array($newlogin, $_SESSION['id']));
-
-                $msg = 'Login modifier';
-            }
-
-            if (isset($_POST['newemail']) and !empty($_POST['newemail']) and $_POST['newemail'] != $user['email']) {
-                $newlogin = htmlspecialchars($_POST['newemail']);
-                $insertlogin = $bdd->prepare("UPDATE utilisateurs SET email = ? WHERE id = ?");
-                $insertlogin->execute(array($newlogin, $_SESSION['id']));
-
-                $msg = 'Email modifier';
-            }
-
-            if (isset($_POST['newpassword']) and !empty($_POST['newpassword']) and isset($_POST['newconfpassword']) and !empty($_POST['newconfpassword'])) {
-                if ($newpassword == $newconfpassword) {
-                    $insertpassword = $bdd->prepare("UPDATE utilisateurs SET password = ? WHERE id = ?");
-                    $insertpassword->execute(array($newpassword, $_SESSION['id']));
-
-                    $msg = 'Password modifier';
-                }
-            }
-        }else{
-            $msg = 'Vous êtes déconnecter';
-        }
-
-        var_dump($_SESSION);
-        ?>
     </main>
+
+        <?php include('elements/footer.php');?>
 </body>
 
 </html>

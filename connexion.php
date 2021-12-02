@@ -3,6 +3,42 @@ session_start();
 include('elements/bdd.php');
 ?>
 
+
+
+<?php
+
+try {
+
+  $login = $_POST['login'];
+  $password = $_POST['password'];
+
+  if (isset($_POST['login']) and isset($_POST['password'])) {
+
+    if (!empty($_POST['login']) and !empty($_POST['password'])) {
+
+      $insert = $bdd->prepare("SELECT * FROM utilisateurs where login = '$login' ");
+      $insert->execute();
+      $userinfo = $insert->fetch();
+
+      $_SESSION['login'] = $userinfo['login'];
+      $_SESSION['id'] = $userinfo['id'];
+      if (password_verify($_POST['password'], $userinfo['password'])) {
+
+        $msg =  'vous êtes connecté';
+
+      } else {
+
+        $msg =  'identifiant ou mot de pass incorrect';
+      }
+    }
+  }
+} catch (PDOException $e) {
+
+  echo 'echec : ' . $e->getMessage();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +59,7 @@ include('elements/bdd.php');
 
       <h1>Se connecter</h1>
 
-      <?php if (isset($msg)) {
+      <?php  if (isset($msg)) {
         echo $msg;
       } ?>
 
@@ -33,55 +69,26 @@ include('elements/bdd.php');
       </div>
 
       <p class="inscription">
-        Je n'est pas de compte. J'en <a href="connexion.php">céer un</a>
+        Je n'ai pas de compte. J'en <a href="connexion.php">céer un</a>
       </p>
       <div align="center">
         <input type="submit" name="valider" value="Se connecter" />
       </div>
     </form>
 
+    <form action="deconnexion.php" id="deco">
+            <input type="submit" ' value="Se deconnecter"/>
+        </form>
+      <?php include('elements/footer.php');?>
   </main>
 
   <div class="connecter">
 
-    <H1><?php if (isset($userinfo['id'])) {
+    <?php if (isset($userinfo['id'])) { ?>
 
-          echo 'bienvenu' .  $unserinfo['login'];
+      <h1> Bienvenu : </h1> <?php  echo  $userinfo['login'];
         } ?> </H1>
   </div>
 </body>
 
 </html>
-
-<?php
-
-try {
-
-  $login = $_POST['login'];
-  $password = $_POST['password'];
-
-  if (isset($_POST['login']) and isset($_POST['password'])) {
-
-    if (!empty($_POST['login']) and !empty($_POST['password'])) {
-
-      $insert = $bdd->prepare("SELECT * FROM utilisateurs where login = '$login' ");
-      $insert->execute();
-      $userinfo = $insert->fetch();
-
-      $_POST['login'] = $userinfo['login'];
-      var_dump($userinfo);
-
-      if (password_verify($_POST['password'], $userinfo['password'])) {
-
-        $msg = 'vous êtes connecté';
-
-      } else {
-
-        $msg =  'identifiant ou mot de pass incorrect';
-      }
-    }
-  }
-} catch (PDOException $e) {
-
-  echo 'echec : ' . $e->getMessage();
-}

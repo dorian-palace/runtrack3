@@ -13,7 +13,7 @@
             
             <ul class="navigation">
                 <h3 class="navi">Navigation</h3>
-                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.php">Accueil</a></li>
                     <li><a href="voyage6.html">Contactez-nous</a></li>
             </ul>
 

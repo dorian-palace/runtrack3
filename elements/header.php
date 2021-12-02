@@ -14,7 +14,8 @@
     <header class="nav">
         <nav>
             <ul>
-            <li><a href="#">Accueil</a></li>
+            <li><a href="index.php">Accueil</a></li>
+
             <?php if (!isset($_SESSION['id'])) {
                 ?>
 
@@ -22,7 +23,14 @@
                 <li><a href="inscription.php">Inscription</a></li>
         
                <?php } ?>
-                <li><a href="inscription.php">modifier profil </a></li>
+
+               <?php if (isset($_SESSION['id'])) {
+                ?>
+
+                    <li><a href="profil.php">modifier profil </a></li>
+        
+               <?php } ?>
+               
                 <li class="menu-deroulant">
                     <a href="#">Services</a>
                     <ul class="sous-menu">
