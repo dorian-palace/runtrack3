@@ -6,6 +6,8 @@ if(isset($_POST['arcticle'])){
 
     if(!empty($_POST['article'])){
 
+
+
     $article = htmlspecialchars($_POST['article']);
     
 
@@ -17,9 +19,12 @@ if(isset($_POST['arcticle'])){
     $id_categorie = $_POST['categorie'];
     $id_utilisateur = $_SESSION['id'];
     
+    $categorie = $bdd->prepare("SELECT * FROM categorie WHERE id = ?");
+    $categorie->execute(array($))
 
-    $insert->$bdd->prepare("INSERT INTO  articles (article,id_categorie,id_utilisateurs,date)VALUES(?,?,?,NOW()");
-    $insert->execute(array($article, $id_categorie, $id_utilisateur));
+
+    $insert->$bdd->prepare("INSERT INTO  articles (article,id_categorie,id_utilisateurs,date)VALUES('$article','$id_categorie','$id_utilisateur',NOW()");
+    $insert->ezxecute(array($article, $id_categorie, $id_utilisateur));
 
     }else{
 
@@ -45,7 +50,7 @@ var_dump($result);
 
         <textarea name="article" placeholder="contenu de l'article" cols="30" rows="10"></textarea>
 
-       <select name="categorie" id="">
+       <select name="categorie">
         <option value="1">catégorie 1</option>
         <option value="2">catégorie 2</option>
         <option value="1">catégorie 1</option>
