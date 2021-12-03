@@ -87,7 +87,7 @@ try {
     <?php if (isset($userinfo['id'])) { ?>
 
       <h1> Bienvenu : </h1> <?php  echo  $userinfo['login'];
-        } ?> </H1>
+        } ?> </h1> 
   </div>
   <?php include('elements/footer.php');?>
 </body>
