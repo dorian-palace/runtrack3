@@ -4,29 +4,40 @@ include('elements/bdd.php');
 
 try{
 
-if(isset($_POST['valider'])){
+        if(isset($_POST['valider'])){
 
-    if(!empty($_POST['article'])){
+        if(!empty($_POST['article'])){
+            
+        $id_utilisateur = $_SESSION['id'];
         
-    $article = htmlspecialchars($_POST['article']);
-    $id_categorie = $_POST['categorie'];
-    $id_utilisateur = $_SESSION['id'];
-
-
-    // $insercategorie = $bdd->prepare("SELECT * FROM categories where id = '$id_categorie'");
-    // $insercategorie->execute();
-    // $result = $insercategorie->fetch();  
-    
-
-    $insert = $bdd->prepare("INSERT INTO articles (article,id_categorie,id_utilisateurs,date)VALUES(?,?,?,NOW()");
-    $insert->execute(array($article, $id_categorie, $id_utilisateur));
+        $article = $_POST['article'];
+        $id_categorie = $_POST['categorie'];
+        
+        
+        $insert_articles = $bdd->prepare("INSERT INTO articles(article,id_categorie,id_utilisateur,date)VALUES(?,?,?,NOW())");
+        $insert_articles->execute(array($article,$id_categorie,$id_utilisateur));
 
     }else{
 
         $msg = 'veuillez remplir tout les champs';
     }
-}
 
+}
+    var_dump($_SESSION);
+    
+
+
+
+
+
+} 
+
+
+
+catch(PDOException $e){
+
+    echo 'erreur : ' .$e->getMessage();
+}
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +61,7 @@ if(isset($_POST['valider'])){
        <select name="categorie" >
         <option value="1">catégorie 1</option>
         <option value="2">catégorie 2</option>
-        <option value="1">catégorie 1</option>
+        <option value="3">catégorie 3</option>
 
        </select>
         <input type="submit"  name ='valider'value="poster l'article">
