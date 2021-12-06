@@ -106,7 +106,7 @@ try {
 
     <?php if (isset($userinfo['id'])) { ?>
 
-      <h1> Bienvenu : <?php echo  $userinfo['login'] ?> <br></h1>
+      <h1> Bienvenue <br/> <?php echo  $userinfo['login'] ?> </h1>
     <?php } ?>
   </div>
   <?php include('elements/footer.php'); ?>
