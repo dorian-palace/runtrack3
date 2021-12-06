@@ -112,12 +112,11 @@ try {
             <div class="modifier">
                 <input id='modifier' type="submit" value="Modifier">
                 
+                
             </div>
         </form>
 
-        <form action="deconnexion.php" id="deco">
-            <input type="submit" ' value="Se deconnecter"/>
-        </form>
+      
 
     </main>
 

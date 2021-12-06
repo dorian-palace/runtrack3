@@ -91,7 +91,7 @@ try {
 
         <?php } else { ?>
 
-          <input type="submit" name="deco" value="Se déconnecter" id="deco_boutton" header />
+          <input type="submit" name="deco" value="Se déconnecter" id="deco_boutton"/>
 
         <?php } ?>
 
