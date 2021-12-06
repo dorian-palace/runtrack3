@@ -5,7 +5,6 @@ include('elements/bdd.php');
 try{
 
         if(isset($_POST['valider'])){
-
         if(!empty($_POST['article'])){
             
         $id_utilisateur = $_SESSION['id'];

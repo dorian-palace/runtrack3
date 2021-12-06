@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,23 +13,16 @@
     <header class="nav">
         <nav>
             <ul>
-            <li><a href="index.php">Accueil</a></li>
+                <li><a href="index.php">Accueil</a></li>
 
-            <?php if (!isset($_SESSION['id'])) {
+                <?php if (!isset($_SESSION['id'])) {
                 ?>
 
-                <li><a href="connexion.php">Connexion</a></li>
-                <li><a href="inscription.php">Inscription</a></li>
-        
-               <?php } ?>
+                    <li><a href="connexion.php">Connexion</a></li>
+                    <li><a href="inscription.php">Inscription</a></li>
 
-               <?php if (isset($_SESSION['id'])) {
-                ?>
+                <?php } ?>
 
-                    <li><a href="profil.php">modifier profil </a></li>
-        
-               <?php } ?>
-               
                 <li class="menu-deroulant">
                     <a href="#">Articles</a>
                     <ul class="sous-menu">
@@ -45,8 +37,24 @@
                         <li><a href="#">SpaceX</a></li>
                         <li><a href="#">Codeur.com</a></li>
                     </ul>
+                 </li>
+
+                <?php if(isset($_SESSION['id'])){?>
+                <li class="menu-deroulant">
+                    <a href="#"> profil de <?php echo $_SESSION['login'] ?></a>
+                    <ul class="sous-menu">
+                        <li><a href="profil.php">Modifier Mon profil</a></li>
+                        <li><a href="deconnexion.php">Se déconnecter</a></li>
+                    </ul>
+                    <?php }?>
                 </li>
+
                 
+
+
+                
+                
+
             </ul>
         </nav>
     </header>
@@ -54,9 +62,9 @@
 
 
 
-    
-    
-    
+
+
+
 
 
 
@@ -67,4 +75,3 @@
 </body>
 
 </html>
-
