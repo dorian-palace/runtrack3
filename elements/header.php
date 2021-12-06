@@ -26,7 +26,7 @@
                 <li class="menu-deroulant">
                     <a href="#">Articles</a>
                     <ul class="sous-menu">
-                        <li><a href="creer-article">Créer un article</a></li>
+                        <li><a href="articles.php">Tous les articles</a></li>
                         <li><a href="#">Web & App</a></li>
                         <li><a href="#">Marketing</a></li>
                     </ul>

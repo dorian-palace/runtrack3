@@ -116,7 +116,7 @@
   }
   
   .sous-menu > li:hover > a {
-    color: white;
+    color: red;
   }
 
 /* forumaire*/
@@ -215,9 +215,43 @@ main{
 }
 
 
+ul.pagination li a {
+  color: black;
+  
+  padding: 8px 16px;
+  text-decoration: none;
+}
 
 
 
+
+ul.pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4%;
+}
+
+ul.pagination li {
+  
+  display: inline;
+  text-align: ;
+
+}
+
+  .page_font{
+
+    font-size: 20px;
+  }
+
+  ul.pagination  li a:active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+ul.pagination li a:hover:not(.active) {
+  
+  background-color: #ddd;}
 
   /* FOOTER */
 
