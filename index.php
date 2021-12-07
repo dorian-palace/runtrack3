@@ -15,8 +15,17 @@ include('elements/bdd.php');
 <body>
     <?php include('elements/header.php');?>
 
-   
-    
+    <main class="cinema">
+
     <h1 class="titre-index">Blog Cinéma</h1>
+
+    </main>
+    
+    
+
+    
+
+
+    </div>
 </body>
 </html>

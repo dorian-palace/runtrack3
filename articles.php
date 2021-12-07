@@ -65,7 +65,7 @@ $req_article->execute();
     <?php
     $page_categorie = (!empty($_GET['categorie']) ? $_GET['categorie'] : 1);
     $req = $bdd->query('SELECT * FROM categories ORDER BY nom');
-    $req->execute(); ?>
+    $req->execute();?>
 
     <div class="categories">
         <?php

@@ -22,7 +22,7 @@ try{
     }
 
 }
-    var_dump($_SESSION);
+    
     
 
 
@@ -49,24 +49,28 @@ catch(PDOException $e){
 </head>
 <body>
     <?php include('elements/header.php'); ?>
+    <main class="main_texte">
 
-        <form action="" method="post">
+         <form class="forme_texte" action="" method="post">
         
         <?php if(isset($msg)){ echo $msg;} ?>
-
-
-        <textarea name="article" placeholder="contenu de l'article" cols="30" rows="10"></textarea>
+        <div class="article">
+        <H2 id="titre_article">Poster un article</H2>
+        <textarea id="text_article" name="article" placeholder="contenu de l'article" cols="60" rows="10"></textarea>
 
        <select name="categorie" >
         <option value="1">catégorie 1</option>
         <option value="2">catégorie 2</option>
         <option value="3">catégorie 3</option>
-
-       </select>
-        <input type="submit"  name ='valider'value="poster l'article">
-
         
-</form>
+       </select>
+       </div>
+        <input type="submit"  id="poster_article" name ='valider'value="poster l'article">
+
+    
+    </form>
+</main>
+    <?php include('elements/footer.php');?>
 </body>
 </html>
 

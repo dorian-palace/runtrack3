@@ -151,7 +151,7 @@ main{
     flex-direction: column;
   }
   
-  form .input input[type='text'],input[type='password'],input[type='email'] {
+  form .input input[type='text'],input[type='password'],input[type='email'], select {
   
     margin-top: 5%;
     text-align: center;
@@ -267,6 +267,66 @@ ul.pagination li a:hover:not(.active) {
 
   }
 
+  .article{
+
+      display: flex;
+  flex-direction: column;
+  margin-top: -30%;
+  
+
+  }
+  .main_texte{
+     display: flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items: center;
+  }
+  #titre_article{
+
+    text-align: center;
+    font-size:40PX;
+    margin-top: 2%;
+  }
+
+  #text_article{
+  margin-top: 10%;
+  padding: 10%;
+  width: 100%;
+    
+    
+  }
+  .forme_texte{
+    margin-top: 20px;
+    background-color: #18534F;
+    padding: 10% ;
+    border-radius: 3%;
+    min-width: 30%;
+    margin-bottom: 5%;
+  }
+
+  select{
+    margin-bottom: 5%;
+    margin-top: 5%;
+    font-size: 20PX;
+    
+  }
+
+  .cinema{
+    background-color: #000000;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(elements/cinema2.jpg);
+    background-position: center;
+    background-size: cover;
+    color: #ffffff;
+    padding: 3em;
+    text-align: center;
+  }
+
+  #poster_article{
+  margin-left: 30%
+  }
+
+
+
   /* FOOTER */
 
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -368,3 +428,4 @@ ul.pagination li a:hover:not(.active) {
 
     margin-top: 3%;
   }
+
