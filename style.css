@@ -151,7 +151,7 @@ main{
     flex-direction: column;
   }
   
-  form .input input[type='text'],input[type='password'],input[type='email']{
+  form .input input[type='text'],input[type='password'],input[type='email'] {
   
     margin-top: 5%;
     text-align: center;
@@ -188,6 +188,12 @@ main{
     font-weight: bolder;
     font-size: 15px;
     background-color: #e2e9c0;
+  }
+
+  .modifier{
+
+    margin-top: 4%;
+    text-align: center;
   }
 
 .connecter{
@@ -252,6 +258,14 @@ ul.pagination li {
 ul.pagination li a:hover:not(.active) {
   
   background-color: #ddd;}
+
+  .titre-index{
+
+    text-align: center;
+    margin-top: 5%;
+    font-size: 45px;
+
+  }
 
   /* FOOTER */
 

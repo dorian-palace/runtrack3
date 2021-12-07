@@ -14,5 +14,9 @@ include('elements/bdd.php');
 </head>
 <body>
     <?php include('elements/header.php');?>
+
+   
+    
+    <h1 class="titre-index">Blog Cinéma</h1>
 </body>
 </html>
