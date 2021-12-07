@@ -3,8 +3,6 @@ session_start();
 include('elements/bdd.php');
 
 //articles par 5 + pagination
-// $page = (!empty($_GET['page']) ?  $_GET['page'] : 1);
-
 
 if(isset($_GET['page']) && !empty($_GET['page'])){
 
@@ -44,7 +42,7 @@ $req_article->execute();
     <div class="articles">
         <?php
         while ($elements =  $req_article->fetch()) { ?>
-            <h4 id="h4articles"><?php echo  $elements['login'] . ' ' . ':' . $elements['article'] . ' ' . $elements['date']; ?> </h4> 
+            <h4 id="h4articles"><?php echo  $elements['login'] . ' ' . ':' . $elements['article'] . ' ' . $elements['date']; ?> </h4> <br />
         <?php } ?>
     </div>
 
@@ -72,7 +70,7 @@ $req_article->execute();
     <div class="categories">
         <?php
         while ($elements = $req->fetch()) { ?>
-            <a href="http://" target="_blank" rel="noopener noreferrer"> <?php echo  $elements['nom']; ?></a> <br />
+            <a href="categorie.php"> <?php echo  $elements['nom']; ?></a> <br />
         <?php } ?>
     </div>
 
@@ -92,7 +90,7 @@ $req_article->execute();
         
          <li class="page-item"> <?php
         for ($i = 1; $i <= $nbpage; $i++):
-        ?><a href="?page=<?php echo $i;?>""><?php echo $i;?></a> <?php
+        ?><a href="?page=<?php echo $i;?>"><?php echo $i;?></a> <?php
         endfor; ?>
         </li>
 
