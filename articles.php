@@ -65,22 +65,41 @@ $req_article->execute();
 
     <?php
     
-    if (isset($_GET['id']) and !empty($_GET['id'])) {
+    if (isset($_GET['categorie']) and !empty($_GET['categorie'])) {
 
-        $getid = $_GET['id'];
+        $get_categorie = $_GET['categorie'];
         $req = $bdd->prepare("SELECT * FROM articles INNER JOIN categories ON categories.id = articles.id_categorie where id_categorie = ?");
-        $req->execute(array($getid));
+        $cat1=$req->execute(array($get_categorie));
+        $categorie_elements = $req->fetch();
 
        
-    }
-    var_dump($getid);?>
+  
+       
+    ?>
     <div class="categories">
-        <?php
-        while ($elements = $req->fetch()) { ?>
-            <?php echo  $elements['id_utilisateurs'];?> <br />
-        <?php } 
-        
-        ?>
+    
+    <?php 
+
+        if ($categorie_elements['id_categorie'] == 1){
+            echo $categorie_elements['article'];
+        }
+
+        if ($categorie_elements['id_categorie'] == 2){
+            echo $categorie_elements['article'];
+        }
+
+
+    
+}?>
+    <a href="?categorie=<?=  1; ?>">cat 1</a>
+
+
+
+    <a href="?categorie=<?=  2; ?>">cat 2</a>
+
+
+    <a href="?categorie=<?=  3; ?>">cat 3</a>
+
     </div>
     
     <ul class="pagination">
@@ -90,7 +109,7 @@ $req_article->execute();
         <li class="page-item">
             <?php if ($page > 1) :
             ?> <a href="?page=<?php echo $page - 1 ?>" class="page-link">
-                    << /a> <?php
+                    </a> <?php
                         endif;
 
 
