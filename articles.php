@@ -4,10 +4,10 @@ include('elements/bdd.php');
 
 //articles par 5 + pagination
 
-if(isset($_GET['page']) && !empty($_GET['page'])){
+if (isset($_GET['page']) && !empty($_GET['page'])) {
 
     $page = (int) strip_tags($_GET['page']);
-}else{
+} else {
 
     $page = 1;
 }
@@ -49,6 +49,7 @@ $req_article->execute();
 
 
     <?php
+
     $result = $bdd->query('SELECT count(id) FROM articles');
     $nbelements = $result->fetchColumn();
 
@@ -58,56 +59,64 @@ $req_article->execute();
     $req->bindValue('debut', $debut, PDO::PARAM_INT);
     $req->bindValue('limite', $limite, PDO::PARAM_INT);
     $req->execute();
-    
+
     //arrondi à l'entier le plus proche, permert d'avoir touchoir un entier
-    $nbpage = ceil($nbelements / $limite); ?> 
+    $nbpage = ceil($nbelements / $limite); ?>
 
     <?php
-    $page_categorie = (!empty($_GET['categorie']) ? $_GET['categorie'] : 1);
-    $req = $bdd->query('SELECT * FROM categories ORDER BY nom');
-    $req->execute();?>
+    
+    if (isset($_GET['id']) and !empty($_GET['id'])) {
 
+        $getid = $_GET['id'];
+        $req = $bdd->prepare("SELECT * FROM articles INNER JOIN categories ON categories.id = articles.id_categorie where id_categorie = ?");
+        $req->execute(array($getid));
+
+       
+    }
+    var_dump($getid);?>
     <div class="categories">
         <?php
         while ($elements = $req->fetch()) { ?>
-            <a href="categorie.php"> <?php echo  $elements['nom']; ?></a> <br />
-        <?php } ?>
-    </div>
-
-    <ul class="pagination">
+            <?php echo  $elements['id_utilisateurs'];?> <br />
+        <?php } 
         
+        ?>
+    </div>
+    
+    <ul class="pagination">
 
-            
-        <li class="page-item"> 
-        <?php if ($page > 1) :
-        ?> <a href="?page=<?php echo $page - 1 ?>" class="page-link"><</a> <?php
-         endif;
-         
-         
-         ?>
+
+
+        <li class="page-item">
+            <?php if ($page > 1) :
+            ?> <a href="?page=<?php echo $page - 1 ?>" class="page-link">
+                    << /a> <?php
+                        endif;
+
+
+                            ?>
 
         </li class="page-item">
-        
-         <li class="page-item"> <?php
-        for ($i = 1; $i <= $nbpage; $i++):
-        ?><a href="?page=<?php echo $i;?>"><?php echo $i;?></a> <?php
-        endfor; ?>
+
+        <li class="page-item"> <?php
+                                for ($i = 1; $i <= $nbpage; $i++) :
+                                ?><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a> <?php
+                                                            endfor; ?>
         </li>
 
         <li class="page-item"> <?php
-        if ($page < $nbpage) :
-        ?> <a href="?page=<?php echo $page + 1; ?>"> ></a><?php
-         endif;
-         ?>
-         </li>
-      
+                                if ($page < $nbpage) :
+                                ?> <a href="?page=<?php echo $page + 1; ?>"> ></a><?php
+                                                        endif;
+                                                            ?>
+        </li>
+
     </ul>
 
 
-    
-    <?php include('elements/footer.php');?>
+
+    <?php include('elements/footer.php'); ?>
 
 </body>
 
 </html>
-

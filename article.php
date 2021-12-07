@@ -31,7 +31,7 @@ if(isset($_POST['valider_comm'])){
 
     }    
     
-    $select_comm = $bdd->prepare("SELECT * FROM commentaires INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur  WHERE id_article = '$getid'");
+    $select_comm = $bdd->prepare("SELECT * FROM commentaires INNER JOIN articles ON utilisateurs.id = commentaires.id_utilisateur  WHERE id_article = '$getid'");
     $select_comm->execute();
     $select_comm = $select_comm->fetch();
 
