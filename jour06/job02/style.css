@@ -14,3 +14,9 @@
         background-color: #275fa0;
     }
 }
+
+@media screen and (max-width: 1280px){
+    *{
+        background-color: #ffffff;
+    }
+}
