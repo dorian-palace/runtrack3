@@ -19,6 +19,8 @@ session_start();
 <body>
     <pre><?php var_dump($_SESSION); ?> </pre>
 
+    
+
     <main classe="user-main">
 
         <div class="container-form">
@@ -50,6 +52,9 @@ session_start();
                 <button type="button" id="button" name="valider" classe='btnFrom'>valider</button>
 
             </form>
+
+            <ul id="msg"></ul>
+            
         </div>
 
     </main>
