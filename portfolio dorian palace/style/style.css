@@ -1,0 +1,87 @@
+/*  background: linear-gradient(159deg,#2d2d3a 0%,#2b2b35 100%); background contour container informations
+#8C8C8E color 
+font-size: 13px;
+font-family: "Poppins",sans-serif;
+#191923 color background body
+letter-spacing: .25px;
+*/
+
+body {
+  background-color: #191923;
+}
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 0;
+  letter-spacing: 0.25px;
+}
+
+h4 {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.container_nav {
+  background: #20202a;
+  width: 290px;
+  min-width: 290px;
+  height: calc(100vh - 30px);
+  position: relative;
+  -webkit-box-shadow: 0 3px 8px 0 rgb(15 15 20 / 20%);
+  box-shadow: 0 3px 8px 0 rgb(15 15 20 / 20%);
+}
+.header_nav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+  /* padding: 30px; */
+  height: 235px;
+  background: linear-gradient(
+    159deg,
+    rgba(37, 37, 50, 0.98) 0%,
+    rgba(35, 35, 45, 0.98) 100%
+  );
+  text-align: center;
+  -webkit-box-shadow: 0 1px 4px 0 rgb(15 15 20 / 10%);
+  box-shadow: 0 1px 4px 0 rgb(15 15 20 / 10%);
+}
+
+.banner_container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 60px;
+  width: 100%;
+  background-color: red;
+  /* background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(15%, rgba(45, 45, 58, 0.9)),
+    color-stop(50%, rgba(45, 45, 58, 0.7)),
+    to(rgba(43, 43, 53, 0.7))
+  );
+  background-image: linear-gradient(
+    90deg,
+    rgba(45, 45, 58, 0.9) 15%,
+    rgba(45, 45, 58, 0.7) 50%,
+    rgba(43, 43, 53, 0.7) 100%
+  ); */
+}
+
+.container_all {
+  display: flex;    
+}
